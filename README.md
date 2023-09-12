@@ -1,11 +1,7 @@
-# org2
+This repo demonstrates an issue with dependency detection in `.cjs` files.
 
-This library was generated with [Nx](https://nx.dev).
+Run `nx lint` and you will see an error that `lodash` is not used, even though it is in `src/foo.cjs` file (and `src/foo.cts`).
 
-## Building
+Uncomment the import in either `src/bar.mjs` or `src/bar.mts`, and you will see the error go away.
 
-Run `nx build org2` to build the library.
-
-## Running unit tests
-
-Run `nx test org2` to execute the unit tests via [Jest](https://jestjs.io).
+This error happens because the file graph does not indicate `npm:lodash` as a dependency of `src/foo.cjs`.
